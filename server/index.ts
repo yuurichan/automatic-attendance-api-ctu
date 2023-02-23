@@ -50,17 +50,22 @@ app.use("/api", routers.faceRouter);
 // technically this would return a succeess 200
 // app.use('/') đa phần dùng cho middleware, ko chấp nhận regex
 // app.all('*') nhận regex và áp dụng cho mọi http methods (get, post, put, delete), dùng cho routing
+// app.all('*', (req, res) => {
+//     res.status(404);
+//     if (req.accepts('html')) {
+//         res.sendFile(path.join(__dirname, 'views', '404.html'));    // so we change 200 to 404
+//     }
+//     else if (req.accepts('json')) {
+//         res.json({error: "404 Not Found"});    // so we change 200 to 404
+//     }
+//     else {
+//         res.type('txt').send("404 Not Found");
+//     }
+// })
 app.all('*', (req, res) => {
     res.status(404);
-    if (req.accepts('html')) {
-        res.sendFile(path.join(__dirname, 'views', '404.html'));    // so we change 200 to 404
-    }
-    else if (req.accepts('json')) {
-        res.json({error: "404 Not Found"});    // so we change 200 to 404
-    }
-    else {
-        res.type('txt').send("404 Not Found");
-    }
+    //res.json({error: "404 Not Found"});    // so we change 200 to 404
+    res.type('txt').send("404 Not Found");
 })
 // Mọi thứ nếu đi tới được mức này thì chỉ có return lỗi
 
