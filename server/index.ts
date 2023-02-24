@@ -62,6 +62,14 @@ app.use("/api", routers.faceRouter);
 //         res.type('txt').send("404 Not Found");
 //     }
 // })
+
+// Few minor changes for some requests
+app.get('/favicon.ico', (req, res) => res.status(204).end());     // Stops the GET /favicon.ico 404 (Since we don't actually need one for our web service)
+app.all('^/$|/index(.html)?', (req, res) => {       // Added to indicate that '/' is the index page, with a response of 200
+    res.status(200);
+    res.type('txt').send("index");
+});
+
 app.all('*', (req, res) => {
     res.status(404);
     //res.json({error: "404 Not Found"});    // so we change 200 to 404

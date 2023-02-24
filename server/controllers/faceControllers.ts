@@ -54,16 +54,16 @@ export const getDescriptors_guest = async (req: Request, res: Response) => {
         const studentCodeList  = ["B2Tuan Tu", "B3Tuan Tu"];
         const normalDesc = [[2, 3, 4], [5, 6, 7]];
 
-        const dir = `${__dirname}/../descriptors`
+        // const dir = `${__dirname}/../descriptors`
 
-        const data = await fs.readdirSync(dir)
-            // .filter(filename => {
-            //     var file = path.basename(filename, path.extname(filename));
-            //     return file === studentCodeList.find((studentCode: any) => {
-            //         return studentCode.toLowerCase() === file.toLowerCase()
-            //     })
-            // })
-            .map(name => require(path.join(dir, name)))
+        // const data = await fs.readdirSync(dir)
+        //     // .filter(filename => {
+        //     //     var file = path.basename(filename, path.extname(filename));
+        //     //     return file === studentCodeList.find((studentCode: any) => {
+        //     //         return studentCode.toLowerCase() === file.toLowerCase()
+        //     //     })
+        //     // })
+        //     .map(name => require(path.join(dir, name)))
         //const mongo_data = await labledFaceDescriptorsModel.find({label: {$in: studentCodeList}}, {label: 1, descriptors: 1, _id: 0})
         const mongo_data = await labledFaceDescriptorsModel.find({label: {$in: studentCodeList}}, {label: "$label", descriptors: "$descriptors", _id: 0})
         //const mongo_data = await labledFaceDescriptorsModel.find({label: {$in: studentCodeList}}, { descriptors: "$descriptors", label: "$label", _id: 0})
