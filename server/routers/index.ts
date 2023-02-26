@@ -7,6 +7,7 @@ import lessonRouter from './lessonRouters'
 import rollCallSession from './rollCallSessionRouters'
 import attendanceDetail  from './attendanceDetailRoters'
 import faceRouter from './faceRouters'
+import wakeUpRouter from './wakeUpCallRouters'
 
 
 const routers = {
@@ -17,6 +18,7 @@ const routers = {
     lessonRouter,
     rollCallSession,
     attendanceDetail,
-    faceRouter
+    faceRouter,
+    wakeUpRouter
 };
 export default routers;
