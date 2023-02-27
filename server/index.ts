@@ -31,7 +31,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 // cors
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000", "https://auto-attend.vercel.app", "https://automatic-attendance-ui-yuurichan.vercel.app", "https://automatic-attendance-ui-git-main-yuurichan.vercel.app"],
+    credentials: true
+}));
 
 // middleware for output colors
 app.use(morgan("dev"));
