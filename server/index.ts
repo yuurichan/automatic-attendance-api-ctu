@@ -69,7 +69,7 @@ app.get('/favicon.ico', (req, res) => res.status(204).end());     // Stops the G
 app.all('^/$|/index(.html)?', (req, res) => {       // Added to indicate that '/' is the index page, with a response of 200
     res.status(200);
     res.type('txt').send("index");
-    return res.status(200).json({msg: "Index"});
+    //return res.status(200).json({msg: "Index"});
 });
 // app.all('/wake_up_call', (req, res) => {       // Added to indicate that '/' is the index page, with a response of 200
 //     res.status(200);
@@ -81,7 +81,7 @@ app.all('*', (req, res) => {
     res.status(404);
     //res.json({error: "404 Not Found"});    // so we change 200 to 404
     res.type('txt').send("404 Not Found");
-    return res.status(404).json({msg: "404 Not Found"});
+    //return res.status(404).json({msg: "404 Not Found"});
 })
 // Mọi thứ nếu đi tới được mức này thì chỉ có return lỗi
 
