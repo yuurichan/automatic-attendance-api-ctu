@@ -67,6 +67,8 @@ class AuthController {
             res.cookie("refreshToken", refresh_token, {
                 path: "/api/refresh_token",
                 httpOnly: true,
+                secure: process.env.NODE_ENV == 'production',   // is only used in production/disable it when in dev
+                sameSite: "none",
                 maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
             });
 
