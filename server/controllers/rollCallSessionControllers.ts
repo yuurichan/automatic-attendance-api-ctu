@@ -140,6 +140,29 @@ class RollCallSessionControllers {
             return res.status(500).json({ msg: error.message })
         }
     }
+    
+    async deleteRollCallSession (req: Request, res: Response) {
+        try {
+            const { id } = req.params
+
+            // Xoa rollcallSession va lay document vua xoa
+            const del_rcSes = await RollCallSessionModel.findByIdAndDelete(id)
+            //console.log('Del rc ses: ', del_rcSes._id)
+            //await RollCallSessionModel.deleteOne({ _id: id })
+
+            // Xoa cac AttendanceDetails lien quan toi rcSession da xoa (trong AttendanceDetailModel)
+            await AttendanceDetailModel.deleteMany({ rollCallSession: del_rcSes._id }, {strictQuery: false})
+            // Ban đầu để rollcall thay vì rollCall nên bị sai schema => bị xóa hết data
+            //.then((res) => {console.log(res)})
+
+
+            return res.json({
+                msg: "Xóa buổi điểm danh thành công"
+            })
+        } catch (error: any) {
+            return res.status(500).json({ msg: error.message })
+        }
+    }
 }
 
 export default new RollCallSessionControllers();
