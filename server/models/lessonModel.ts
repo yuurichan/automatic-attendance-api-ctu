@@ -32,6 +32,12 @@ const LessonScheme = new mongoose.Schema({
         trim: true,
         default: 'Thứ 2',
     },
+    // Phong hoc
+    roomLocation: {
+        type: String,
+        default: "",
+        trim: true
+    },
     teacher: {
         ref: "user",
         type: mongoose.Types.ObjectId

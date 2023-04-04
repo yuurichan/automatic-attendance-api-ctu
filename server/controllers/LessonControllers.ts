@@ -28,10 +28,10 @@ class LessonController {
 
     async createLesson(req: RequestUser, res: Response) {
         try {
-            const { timeStart, timeEnd, desc, course_id, weekday } = req.body;
+            const { timeStart, timeEnd, desc, course_id, weekday, roomLocation } = req.body;
 
             const newLesson = new Lessons({
-                timeStart, timeEnd, desc, course: course_id, weekday,
+                timeStart, timeEnd, desc, course: course_id, weekday, roomLocation,
                 teacher: req.user?._id
             })
 
@@ -50,10 +50,10 @@ class LessonController {
     async updateLesson(req: RequestUser, res: Response) {
         try {
             const { id } = req.params;
-            const { timeStart, timeEnd, desc, course_id, weekday } = req.body;
+            const { timeStart, timeEnd, desc, course_id, weekday, roomLocation } = req.body;
 
             const newLesson = await Lessons.findByIdAndUpdate(id, {
-                timeStart, timeEnd, desc, course: course_id, weekday
+                timeStart, timeEnd, desc, course: course_id, weekday, roomLocation
             })
 
             return res.json({
